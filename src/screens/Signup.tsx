@@ -6,6 +6,8 @@ import {
   TextInput,
   View,
   SafeAreaView,
+  Keyboard,
+  Pressable,
 } from "react-native";
 import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
@@ -52,10 +54,14 @@ const Signup = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>이메일로 회원가입</Text>
+      <Pressable onPress={() => Keyboard.dismiss()}>
+        <Text style={styles.header}>이메일로 회원가입</Text>
+      </Pressable>
+
       <View style={styles.form}>
         <Text style={styles.label}>이메일</Text>
         <TextInput
+          testID="emailInput"
           style={styles.input}
           placeholder="이메일을 입력해주세요."
           value={email}
@@ -63,19 +69,27 @@ const Signup = () => {
         />
         <Text style={styles.label}>비밀번호</Text>
         <TextInput
+          testID="passwordInput"
           style={styles.input}
           placeholder="비밀번호를 입력해주세요."
           value={password}
           onChangeText={(text) => setPassword(text)}
-          secureTextEntry
+          // secureTextEntry
+          textContentType="none" // 자동 완성 비활성화
+          autoComplete="off" // 자동 완성 비활성화
+          importantForAutofill="no" // 추가적으로 자동 완성 비활성화
         />
         <Text style={styles.label}>비밀번호 확인</Text>
         <TextInput
+          testID="passwordConfirmInput"
           style={[styles.input, { marginBottom: 5 }]}
           placeholder="비밀번호를 한번 더 입력해주세요."
           value={repassword}
           onChangeText={(text) => setRepassword(text)}
-          secureTextEntry
+          // secureTextEntry
+          textContentType="none" // 자동 완성 비활성화
+          autoComplete="off" // 자동 완성 비활성화
+          importantForAutofill="no" // 추가적으로 자동 완성 비활성화
         />
         {password != repassword && (
           <Text style={styles.error}>비밀번호가 일치하지 않습니다.</Text>

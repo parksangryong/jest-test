@@ -48,7 +48,7 @@ const Home = () => {
   }, []);
 
   return (
-    <ScrollView>
+    <ScrollView testID="scrollViewId">
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.name}>{newEmail} 님</Text>

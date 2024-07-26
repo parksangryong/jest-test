@@ -6,6 +6,8 @@ import {
   TextInput,
   View,
   SafeAreaView,
+  Pressable,
+  Keyboard,
 } from "react-native";
 import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
@@ -27,7 +29,6 @@ const Login = () => {
       Alert.alert("아이디 혹은 비밀번호가 틀렸습니다.");
     }
   };
-
   useEffect(() => {
     if (email.length > 0 && password.length > 0) {
       setDisabled(false);
@@ -38,10 +39,13 @@ const Login = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>이메일로 로그인</Text>
+      <Pressable onPress={() => Keyboard.dismiss()}>
+        <Text style={styles.header}>이메일로 로그인</Text>
+      </Pressable>
       <View style={styles.form}>
         <Text style={styles.label}>이메일</Text>
         <TextInput
+          testID="loginEmail"
           style={styles.input}
           placeholder="이메일을 입력해주세요."
           value={email}
@@ -49,6 +53,7 @@ const Login = () => {
         />
         <Text style={styles.label}>비밀번호</Text>
         <TextInput
+          testID="pwdEmail"
           style={styles.input}
           placeholder="비밀번호를 입력해주세요."
           value={password}
